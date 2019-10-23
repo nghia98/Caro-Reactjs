@@ -1,84 +1,63 @@
-import React from "react";
+import React from 'react';
+import {render} from 'react-dom';
+import {createStore} from 'redux';
+// import thunkMiddleware from 'redux-thunk';
+import {Provider} from 'react-redux';
+
+
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+    BrowserRouter as Router,
+    Switch,
+    Route,
+  } from "react-router-dom";
+import reducer from './reducers';
+import './index.css';
+import * as serviceWorker from './serviceWorker';
 
-// This site has 3 pages, all of which are rendered
-// dynamically in the browser (not server rendered).
-//
-// Although the page does not ever refresh, notice how
-// React Router keeps the URL up to date as you navigate
-// through the site. This preserves the browser history,
-// making sure things like the back button and bookmarks
-// work properly.
+import Home from './containers/home'
+import Login from './containers/login'
+import Register from './containers/register'
 
-export default function BasicExample() {
-  return (
-    <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-        </ul>
 
-        <hr />
+const store = createStore(
+    reducer,
+    // applyMiddleware(
+    //     thunkMiddleware, // lets us dispatch() functions
+    //   )
+)
 
-        {/*
-          A <Switch> looks through all its children <Route>
-          elements and renders the first one whose path
-          matches the current URL. Use a <Switch> any time
-          you have multiple routes, but you want only one
-          of them to render at a time
-        */}
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+const App = () => {
+    return (
+      <Router>
+        <div>
+            <Switch>
+                <Route exact path="/login">
+                    <Provider store = {store}>
+                        <Login />
+                    </Provider>
+                </Route>
+                <Route path="/register">
+                    <Provider store = {store}>
+                        <Register />
+                    </Provider>
+                </Route>
+                <Route path="/">
+                    <Provider store = {store}>
+                        <Game />
+                    </Provider>
+                </Route>
+             </Switch>
+        </div>
+
+      </Router>
   );
 }
 
-// You can think of these components as "pages"
-// in your app.
+render(App, document.getElementById('root'));
 
-function Home() {
-  return (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
-}
 
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-}
 
-function Dashboard() {
-  return (
-    <div>
-      <h2>Dashboard</h2>
-    </div>
-  );
-}
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
