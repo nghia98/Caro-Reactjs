@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux';
-import Game from '../components/Game'
+import Game from '../components/game/Game'
 import * as Actions from '../actions/index'
 
 const mapStateToProps = (state) => ({

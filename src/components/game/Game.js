@@ -1,6 +1,6 @@
 import React from 'react'
 import Board from './Board'
-import CheckWinner from '../algorithm/CheckWin'
+import CheckWinner from '../../algorithm/CheckWin'
 
 const rows = 20;
 const cols = 20;
@@ -9,7 +9,7 @@ const Game = (props) => {
     
     const {history, stepNumber, xIsNext, isDescending, actions} = props;
 
-    console.log(props);
+    
 
     // Hàm xử lý khi người chơi đánh
     const handleClick = (x,y) => {
