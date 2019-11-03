@@ -1,48 +1,55 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {createStore} from 'redux';
-// import thunkMiddleware from 'redux-thunk';
+import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
-
+import thunkMiddleware from 'redux-thunk';
 
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-  } from "react-router-dom";
+} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import reducer from './reducers';
+
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-import Home from './containers/home'
-import Login from './containers/login'
-import Register from './containers/register'
+// import Home from './containers/FillterHome'
+import Login from './containers/LoginContainer'
+import Register from './containers/RegisterContainer'
+import Game from './containers/GameContainer'
 
+// const store = createStore(
+//     reducer,
+//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+//     applyMiddleware(
+//         thunkMiddleware, // lets dispatch() functions
+//       )
+// )
 
-const store = createStore(
-    reducer,
-    // applyMiddleware(
-    //     thunkMiddleware, // lets us dispatch() functions
-    //   )
-)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer, /* preloadedState, */ composeEnhancers(
+    applyMiddleware(thunkMiddleware)
+  ));
 
-const App = () => {
+export default function App(){
     return (
       <Router>
         <div>
             <Switch>
                 <Route exact path="/login">
-                    <Provider store = {store}>
+                    <Provider store={store}>
                         <Login />
                     </Provider>
                 </Route>
                 <Route path="/register">
-                    <Provider store = {store}>
+                    <Provider store={store}>
                         <Register />
                     </Provider>
                 </Route>
                 <Route path="/">
-                    <Provider store = {store}>
+                    <Provider store={store}>
                         <Game />
                     </Provider>
                 </Route>
@@ -53,7 +60,7 @@ const App = () => {
   );
 }
 
-render(App, document.getElementById('root'));
+render( <App />, document.getElementById('root'));
 
 
 

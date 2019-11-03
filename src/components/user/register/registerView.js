@@ -1,28 +1,65 @@
-import React from 'react'
-import {Form, Button} from 'react-bootstrap'
+import React, {useState} from 'react'
+import {Redirect} from 'react-router'
+import 'font-awesome/css/font-awesome.min.css';
+import '../css/user.css'
+// import {Form, Button} from 'react-bootstrap'
 
-const registerView = () => {
+const RegisterView = (props) => {
 
-    return (
-        <Form>
-            <Form.Group controlId="formBasicFullName">
-                <Form.Label>Full Name</Form.Label>
-                <Form.Control type="text" placeholder="Full Name" />
-                <Form.Text className="text-muted"></Form.Text>
-            </Form.Group>
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [rePassword, setRePassword] = useState('');
+
+    const {isFetching, message, fetchRegister} = props;
+    // let notifi = message;
+
+    // const checkPass = () => {
+    //   if (password !== rePassword){
+    //     notifi = 'Mật khẩu không trùng khớp !'
+    //   }else{
+    //     fetchRegister(email,password,fullName);
+    //   }
+    // }
+    // let matchPass = (password !== rePassword) ? 'Mật khẩu không trùng khớp !' : '';
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    return isLoggedIn ? (<Redirect to="/" />) : (
+        <div className = "login-register-form">
+          <form className="form-signup" onSubmit={(e) => {e.preventDefault(); fetchRegister(email,password,fullName);}}>
+            <h1 className="h3 mt-3 mb-4 font-weight-normal text-center">Đăng kí</h1>
+            <div className="box">
+              <div className="content">
+                <div className="social">
+                  <a id="google_login" className="circle google" href="/">
+                      <i className="fa fa-google-plus fa-fw"/>
+                  </a>
+                  <a id="facebook_login" className="circle facebook" href="/">
+                      <i className="fa fa-facebook fa-fw" />
+                  </a>
+                </div>
+                <div className="division">
+                  <div className="line left" />
+                    <span>hoặc</span>
+                  <div className="line right" />
+                </div>
+              </div>
+            </div>
             
-            <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
-                <Form.Text className="text-muted"></Form.Text>
-            </Form.Group>
+            
+            <p className="text-red" >{(password !== rePassword && rePassword) ? 'Mật khẩu không trùng khớp !' : message}</p>
 
-            <Form.Group controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" /></Form.Group>
-            <Button variant="primary" type="submit">Submit</Button>
-        </Form>
+            <input type="text" id="full-name" className="form-control" placeholder="Họ và tên " value={fullName} onChange={(e) => setFullName(e.target.value)} required/>
+            <input type="email" id="user-email" className="form-control" placeholder="Địa chỉ Email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+            <input type="password" id="user-pass" className="form-control" placeholder="Mật khẩu" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+            <input type="password" id="user-repeatpass" className="form-control" placeholder="Nhập lại mật khẩu" value={rePassword} onChange={(e) => setRePassword(e.target.value)} required/>
+            <button className="btn btn-primary btn-block" type="submit" disabled={isFetching || password !== rePassword}>Đăng kí</button>
+            <div className="forgot">
+                <span>Đã có tài khoản? </span>
+                <a href="/login" id="cancel_signup"> Đăng nhập</a>
+            </div>          
+          </form>
+        </div>
     )
 }
 
-export default registerView
+export default RegisterView

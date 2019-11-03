@@ -1,0 +1,7 @@
+export const RESET_GAME = 'RESET_GAME'
+export const JUMPTO_STEP = 'JUMPTO_STEP'
+export const SORT_HISTORY = 'SORT_HISTORY'
+export const HANDLE_CLICK = 'HANDLE_CLICK'
+export const LOGREG_REQUEST = 'LOGREG_REQUEST'
+export const LOGREG_FAILURE = 'LOGREG_FAILURE'
+export const LOGREG_SUCCESS = 'LOGREG_SUCCESS'

@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux';
-import Register from '../components/user/register/registerView'
-import * as Actions from '../actions/index'
+import Login from '../components/user/login/LoginView'
+import {fetchLogin} from '../actions/index'
 
 const mapStateToProps = (state) => ({
     isFetching: state.userReducer.isFetching,
@@ -9,12 +9,12 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators(Actions, dispatch),
+    fetchLogin: bindActionCreators(fetchLogin, dispatch),
 })
 
-const FillterRegister = connect(
+const LoginContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Register);
+)(Login);
 
-export default FillterRegister
+export default LoginContainer

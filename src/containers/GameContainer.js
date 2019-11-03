@@ -7,16 +7,16 @@ const mapStateToProps = (state) => ({
     history: state.gameReducer.history,
     xIsNext: state.gameReducer.xIsNext,
     isDescending : state.gameReducer.isDescending,
-    stepNumber: state.gameReducer.stepNumber
+    stepNumber: state.gameReducer.stepNumber,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators(Actions, dispatch),
 })
 
-const FilterGame = connect(
+const GameContainer = connect(
     mapStateToProps,
     mapDispatchToProps
 )(Game);
 
-export default FilterGame
+export default GameContainer

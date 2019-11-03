@@ -1,6 +1,11 @@
-body {
-  font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
+body{
+  font: 14px "FontRansomware", Futura, sans-serif;
+
+  background-image: linear-gradient(rgb(62, 126, 153), rgb(81, 63, 160));
+  background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
 }
 
 ol, ul {

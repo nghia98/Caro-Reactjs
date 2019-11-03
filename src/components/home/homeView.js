@@ -1,6 +1,6 @@
 import React from 'react'
 import {Card, Button} from 'react-bootstrap'
-import Game from '../../containers/FilterGame';
+import Game from '../../containers/GameContainer';
 
 const homeView = () => {
 
