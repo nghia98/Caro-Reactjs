@@ -5,7 +5,7 @@ const initalState = {
     message: null,
 }
 
-const userReducer = (state = initalState, action) => {
+const user = (state = initalState, action) => {
     switch (action.type) {
         case LOGREG_REQUEST:
             return {
@@ -32,4 +32,4 @@ const userReducer = (state = initalState, action) => {
     }
 }
 
-export default userReducer;
+export default user;

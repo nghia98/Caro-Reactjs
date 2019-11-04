@@ -4,10 +4,10 @@ import Game from '../components/game/Game'
 import * as Actions from '../actions/index'
 
 const mapStateToProps = (state) => ({
-    history: state.gameReducer.history,
-    xIsNext: state.gameReducer.xIsNext,
-    isDescending : state.gameReducer.isDescending,
-    stepNumber: state.gameReducer.stepNumber,
+    history: state.game.history,
+    xIsNext: state.game.xIsNext,
+    isDescending : state.game.isDescending,
+    stepNumber: state.game.stepNumber,
 })
 
 const mapDispatchToProps = (dispatch) => ({

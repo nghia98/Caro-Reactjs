@@ -1,7 +1,7 @@
 body{
   font: 14px "FontRansomware", Futura, sans-serif;
 
-  background-image: linear-gradient(rgb(62, 126, 153), rgb(81, 63, 160));
+  background-image: url('./background.png');
   background-repeat: no-repeat;
     background-size: cover;
     background-position: center top;

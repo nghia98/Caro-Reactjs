@@ -110,19 +110,29 @@ export const fetchRegister = (email, password, fullName) => {
     }
   }
 
-export const getProfile = (status, user) => {
+export const getInfoRequest = () => {
     return {
-        type: 'GET_PROFILE',
-        status,
-        user
+        type: types.GET_INFO_REQUEST
     };
 }
 
-export const fetchProfile = (token) => {
+export const getInfoFailure = () => {
+    return {
+        type: types.GET_INFO_FAILURE
+    };
+}
+export const getInfoSuccess = (userInfo) => {
+    return {
+        type: types.GET_INFO_SUCCESS,
+        userInfo
+    };
+}
+
+export const fetchInfoUser = (token) => {
 
     return dispatch => {
   
-        dispatch(getProfile('REQUEST'));
+        dispatch(getInfoRequest());
 
         const bearerToken = `Bearer ${  token}`;
 
@@ -135,16 +145,16 @@ export const fetchProfile = (token) => {
         .then(
             response => response.json(),
             error => {
-                console.log('An error occurred.', error);
-                dispatch(getProfile('FAILED'));
+                console.log(error);
+                dispatch(getInfoFailure());
             }
         )
         .then(json => {
-            dispatch(getProfile('SUCCESS', json));
+            dispatch(getInfoSuccess(json));
         })
         .catch(err => {
-            console.log('An error occurred.', err);
-            dispatch(getProfile('FAILED'));
+            console.log(err);
+            dispatch(getInfoFailure());
         })
     }
   }

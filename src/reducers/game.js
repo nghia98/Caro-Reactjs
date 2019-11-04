@@ -13,7 +13,7 @@ const initalState = {
 };
 
 
-const gameReducer = (state = initalState, action) => {
+const game = (state = initalState, action) => {
     switch (action.type) {
         case RESET_GAME:
             return {
@@ -51,4 +51,4 @@ const gameReducer = (state = initalState, action) => {
 
 }
 
-export default gameReducer
+export default game

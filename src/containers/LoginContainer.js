@@ -4,8 +4,8 @@ import Login from '../components/user/login/LoginView'
 import {fetchLogin} from '../actions/index'
 
 const mapStateToProps = (state) => ({
-    isFetching: state.userReducer.isFetching,
-    message: state.userReducer.message,
+    isFetching: state.user.isFetching,
+    message: state.user.message,
 })
 
 const mapDispatchToProps = (dispatch) => ({

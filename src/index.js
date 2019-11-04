@@ -15,10 +15,9 @@ import reducer from './reducers';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-// import Home from './containers/FillterHome'
+import Home from './containers/HomeContainer'
 import Login from './containers/LoginContainer'
 import Register from './containers/RegisterContainer'
-import Game from './containers/GameContainer'
 
 // const store = createStore(
 //     reducer,
@@ -50,7 +49,7 @@ export default function App(){
                 </Route>
                 <Route path="/">
                     <Provider store={store}>
-                        <Game />
+                        <Home />
                     </Provider>
                 </Route>
              </Switch>

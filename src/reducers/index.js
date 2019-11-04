@@ -1,12 +1,12 @@
 import {combineReducers} from 'redux'
-import gameReducer from './gameReducer'
-import userReducer from './userReducer'
-import homeReducer from './homeReducer'
+import game from './game'
+import user from './user'
+import home from './home'
 
 const App = combineReducers({
-    gameReducer,
-    userReducer,
-    homeReducer
+    game,
+    user,
+    home
 })
 
 export default App

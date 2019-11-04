@@ -12,18 +12,9 @@ const RegisterView = (props) => {
     const [rePassword, setRePassword] = useState('');
 
     const {isFetching, message, fetchRegister} = props;
-    // let notifi = message;
 
-    // const checkPass = () => {
-    //   if (password !== rePassword){
-    //     notifi = 'Mật khẩu không trùng khớp !'
-    //   }else{
-    //     fetchRegister(email,password,fullName);
-    //   }
-    // }
-    // let matchPass = (password !== rePassword) ? 'Mật khẩu không trùng khớp !' : '';
     const isLoggedIn = localStorage.getItem("isLoggedIn");
-    return isLoggedIn ? (<Redirect to="/" />) : (
+    return (isLoggedIn === 'true') ? (<Redirect to="/" />) : (
         <div className = "login-register-form">
           <form className="form-signup" onSubmit={(e) => {e.preventDefault(); fetchRegister(email,password,fullName);}}>
             <h1 className="h3 mt-3 mb-4 font-weight-normal text-center">Đăng kí</h1>

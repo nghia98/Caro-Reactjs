@@ -4,8 +4,8 @@ import Register from '../components/user/register/RegisterView'
 import {fetchRegister} from '../actions/index'
 
 const mapStateToProps = (state) => ({
-    isFetching: state.userReducer.isFetching,
-    message: state.userReducer.message,
+    isFetching: state.user.isFetching,
+    message: state.user.message,
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -10,7 +10,9 @@ const LoginView = props => {
 
     const {fetchLogin, isFetching, message} = props;
     const isLoggedIn = localStorage.getItem("isLoggedIn");
-    return isLoggedIn ? (<Redirect to="/" />) : (
+    
+
+    return (isLoggedIn === 'true') ? (<Redirect to="/" />) : (
       <div className="login-register-form">
         <form className="form-signin" onSubmit={(e) => {e.preventDefault();fetchLogin(email,password)}}>
           <h1 className="h3 mt-3 mb-4 font-weight-normal text-center"> Đăng nhập</h1>

@@ -1,0 +1,42 @@
+.centered {
+    position: fixed;
+    top: 52%;
+    left: 50%;
+    transform: translate(-52%, -50%);
+    width: 25%;
+  }
+
+.name-user{
+    display: inline;
+    color: red;
+    font-size: 32px;
+}
+
+.btn-game{
+    display: inline-block;
+    font-size: 30px;
+    width: 100%;
+    border-radius: .4rem;
+    margin-bottom: 20px;
+    border-color: rgb(66, 63, 63);
+}
+
+.header-home{
+    margin-top: 30px;
+}
+
+.header-home h3{
+    display: inline;
+}
+
+.avatar {
+    border: 2px solid #0ef82d;
+    width: 100px;
+    height: 100px;
+    border-radius: 5%;
+    margin-right: 20px;
+  }
+
+.mt-100{
+    margin-top: 100px;
+}
