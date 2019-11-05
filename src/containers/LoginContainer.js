@@ -6,6 +6,7 @@ import {fetchLogin} from '../actions/index'
 const mapStateToProps = (state) => ({
     isFetching: state.user.isFetching,
     message: state.user.message,
+    isLoggedIn : state.user.isLoggedIn
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -8,6 +8,7 @@ const mapStateToProps = (state) => ({
     xIsNext: state.game.xIsNext,
     isDescending : state.game.isDescending,
     stepNumber: state.game.stepNumber,
+    userInfo: state.home.userInfo,
 })
 
 const mapDispatchToProps = (dispatch) => ({

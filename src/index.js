@@ -18,6 +18,7 @@ import * as serviceWorker from './serviceWorker';
 import Home from './containers/HomeContainer'
 import Login from './containers/LoginContainer'
 import Register from './containers/RegisterContainer'
+import Game from './containers/GameContainer'
 
 // const store = createStore(
 //     reducer,
@@ -45,6 +46,11 @@ export default function App(){
                 <Route path="/register">
                     <Provider store={store}>
                         <Register />
+                    </Provider>
+                </Route>
+                <Route path="/game-offline">
+                    <Provider store={store}>
+                        <Game />
                     </Provider>
                 </Route>
                 <Route path="/">

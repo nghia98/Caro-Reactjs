@@ -1,17 +1,12 @@
 import React from 'react'
 import {Button} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 // import Game from '../../containers/GameContainer';
 import './home.css'
 
 const HomeView = (props) => {
 
-    const logOut = () => {
-        localStorage.setItem('token', null);
-        localStorage.setItem('isLoggedIn', false);
-        window.location.href = '/login';
-    }
-
-    const {userInfo, fetchInfoUser} = props;
+    const {logOut, userInfo, fetchInfoUser} = props;
     
         if(userInfo){
             return (
@@ -22,10 +17,10 @@ const HomeView = (props) => {
                     </div>
                             
                     <div className="centered">
-                        <Button type="button" className="btn-game">Chơi với máy</Button>
+                        <Link to="game-offline"><Button type="button" className="btn-game">Chơi với máy</Button></Link>
                         <Button type="button" className="btn-game">Tìm người chơi</Button>
                         <Button type="button" className="btn-game">Thay đổi thông tin</Button>
-                        <Button type="button" className="btn-game bg-dark" onClick={() => logOut()}>Đăng xuất</Button>
+                        <Link to = "/login"><Button type="button" className="btn-game bg-dark" onClick={() => {localStorage.setItem('token', null);logOut()}}>Đăng xuất</Button></Link>
                     </div>
    
                 </div>
@@ -39,8 +34,8 @@ const HomeView = (props) => {
                 <center><h2 className="mt-100"> Vui lòng đăng nhập hoặc đăng kí để tiếp tục !</h2></center>
                 <div className="centered">
                     
-                    <Button type="button" className="btn-game" onClick= {()=> {window.location.href='/login'}}> Đăng nhập</Button>
-                    <Button type="button" className="btn-game" onClick= {()=> {window.location.href='/register'}}> Đăng kí</Button>
+                    <Link to="/login"><Button type="button" className="btn-game"> Đăng nhập</Button></Link>
+                    <Link to="/register"><Button type="button" className="btn-game"> Đăng kí</Button></Link>
 
                 </div>
                 </div>
@@ -49,8 +44,6 @@ const HomeView = (props) => {
         
         fetchInfoUser(token);
         
-        
-    
         return (
                 <div className = "centered">
                     <center><h1>Đang tải...</h1></center>

@@ -67,8 +67,8 @@ export const fetchLogin = (email, password) => {
         .then(json => {
             if (json.token) {
                 localStorage.setItem('token', json.token);
-                localStorage.setItem('isLoggedIn', true);
-                window.location.href = '/';            }
+                dispatch(logRegSuccess('Đăng nhập thành công !'));         
+            }
             else {
                 dispatch(logRegFailure(json.message));
             }
@@ -158,3 +158,9 @@ export const fetchInfoUser = (token) => {
         })
     }
   }
+
+export const logOut = () => {
+    return {
+         type: types.LOG_OUT
+    };
+}

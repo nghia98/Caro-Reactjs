@@ -1,8 +1,7 @@
-import {GET_INFO_REQUEST, GET_INFO_FAILURE, GET_INFO_SUCCESS} from '../constants/ActionTypes'
+import {GET_INFO_REQUEST, GET_INFO_FAILURE, GET_INFO_SUCCESS, LOG_OUT} from '../constants/ActionTypes'
 
 const initalState = {
     isFetching: false,
-    notLogin: true,
     userInfo: null,
 }
 const home = (state = initalState, action) => {
@@ -22,8 +21,12 @@ const home = (state = initalState, action) => {
             return {
                 ...state,
                 isFetching: false,
-                notLogin: false,
                 userInfo: action.userInfo
+            }
+        case LOG_OUT:
+            return {
+                ...state,
+                userInfo: null
             }
         
         default:

@@ -1,5 +1,6 @@
 import React , {useState} from 'react'
 import {Redirect} from 'react-router'
+import {Link} from 'react-router-dom'
 import 'font-awesome/css/font-awesome.min.css';
 import '../css/user.css'
 
@@ -8,11 +9,14 @@ const LoginView = props => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const {fetchLogin, isFetching, message} = props;
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    
+    const {isLoggedIn, fetchLogin, isFetching, message} = props;
 
-    return (isLoggedIn === 'true') ? (<Redirect to="/" />) : (
+    if(isLoggedIn)
+    return(
+      <Redirect push to="/" />
+    );
+
+    return (
       <div className="login-register-form">
         <form className="form-signin" onSubmit={(e) => {e.preventDefault();fetchLogin(email,password)}}>
           <h1 className="h3 mt-3 mb-4 font-weight-normal text-center"> Đăng nhập</h1>
@@ -37,10 +41,11 @@ const LoginView = props => {
           <input type="email" id="inputEmail" className="form-control" placeholder="Tài khoản" value={email} onChange={(e) => setEmail(e.target.value)} required/>
           <input type="password" id="inputPassword" className="form-control" placeholder="Mật khẩu" value={password} onChange={(e) => setPassword(e.target.value)} required />
           <button className="btn btn-success btn-block" type="submit" disabled={isFetching}><i className="fas fa-sign-in-alt"/> Đăng nhập</button>
-          <a href="/" id="forgot_pswd" className="text-right">Quên mật khẩu ?</a>
+          
+          <Link to="/reset-password" className="text-right">Quên mật khẩu ?</Link>
           <hr />
           
-          <button className="btn btn-primary btn-block" type="button" id="btn-signup" onClick={ () => {window.location.href=`/register`}}><i className="fa fa-user-plus" /> Tạo tài khoản</button>
+          <Link to="/register"><button className="btn btn-primary btn-block" type="button" id="btn-signup"><i className="fa fa-user-plus" /> Tạo tài khoản</button></Link>
         </form>
         
         <form action="/reset/password/" className="form-reset">

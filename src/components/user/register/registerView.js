@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Redirect} from 'react-router'
+import {Link} from 'react-router-dom'
 import 'font-awesome/css/font-awesome.min.css';
 import '../css/user.css'
 // import {Form, Button} from 'react-bootstrap'
@@ -11,10 +12,14 @@ const RegisterView = (props) => {
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
 
-    const {isFetching, message, fetchRegister} = props;
+    const {isFetching, isLoggedIn, message, fetchRegister} = props;
 
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    return (isLoggedIn === 'true') ? (<Redirect to="/" />) : (
+    if(isLoggedIn)
+    return(
+      <Redirect push to="/" />
+    );
+    
+    return (
         <div className = "login-register-form">
           <form className="form-signup" onSubmit={(e) => {e.preventDefault(); fetchRegister(email,password,fullName);}}>
             <h1 className="h3 mt-3 mb-4 font-weight-normal text-center">Đăng kí</h1>
@@ -46,7 +51,7 @@ const RegisterView = (props) => {
             <button className="btn btn-primary btn-block" type="submit" disabled={isFetching || password !== rePassword}>Đăng kí</button>
             <div className="forgot">
                 <span>Đã có tài khoản? </span>
-                <a href="/login" id="cancel_signup"> Đăng nhập</a>
+                <Link to="/login">Đăng nhập</Link>
             </div>          
           </form>
         </div>

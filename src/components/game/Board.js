@@ -1,13 +1,14 @@
 import React from 'react';
 import Square from './Square';
+import './css/game.css'
 
 const Board = (props) => {  
 
     const {squares, onClick, sizeOfBoard, arrWin} = props;
 
-    const renderSquare = (x, y, isWin) => {
+    const renderSquare = (x, y, isWin, squareKey) => {
         return (
-                <Square value={squares[x*sizeOfBoard +y]} squareWin = {isWin}  onClick = { () => {onClick(x,y)}}/>
+                <Square key={squareKey} value={squares[x*sizeOfBoard +y]} squareWin = {isWin} onClick = { () => {onClick(x,y)}}/>
         );
     };
 
@@ -28,7 +29,7 @@ const Board = (props) => {
                 }
             }
             
-            return <span key = {squareKey} > {renderSquare(i,j, isWin)}</span>
+            return renderSquare(i,j, isWin, squareKey);
         });
 
         const id = i;

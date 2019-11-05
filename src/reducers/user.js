@@ -1,8 +1,9 @@
-import {LOGREG_REQUEST, LOGREG_FAILURE, LOGREG_SUCCESS} from '../constants/ActionTypes'
+import {LOGREG_REQUEST, LOGREG_FAILURE, LOGREG_SUCCESS, LOG_OUT} from '../constants/ActionTypes'
 
 const initalState = {
     isFetching: false,
     message: null,
+    isLoggedIn: false
 }
 
 const user = (state = initalState, action) => {
@@ -25,8 +26,15 @@ const user = (state = initalState, action) => {
                 ...state,
                 isFetching: false,
                 message: action.message,
+                isLoggedIn: true,
             }
-              
+        case LOG_OUT:
+            return {
+                ...state,
+                isLoggedIn: false,
+                message: null
+            }
+        
         default:
             return state;
     }
